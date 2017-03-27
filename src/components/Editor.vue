@@ -1,29 +1,27 @@
 <template>
 <div class="editor">
   <h1>Editor</h1>
+  {{ dialogs }}
   <hr>
-  <div v-for="node in dialogs">
-    <start-node :node="node" v-if="node.type=='start'" />
-  </div>
+  <node :node="startNode" :time="3" />
 </div>
 </template>
 
 <script>
-import StartNode from './nodes/StartNode.vue'
-import EndNode from './nodes/EndNode.vue'
-import NormalNode from './nodes/NormalNode.vue'
-import QuestionNode from './nodes/QuestionNode.vue'
-import AnswerNode from './nodes/AnswerNode.vue'
+import _ from 'lodash'
+import Node from './Node.vue'
 
 export default {
   props: ['dialogs'],
 
+  computed: {
+    startNode () {
+      return _.find(this.dialogs, { type: 'start' })
+    }
+  },
+
   components: {
-    StartNode,
-    EndNode,
-    NormalNode,
-    QuestionNode,
-    AnswerNode
+    Node
   }
 }
 </script>
@@ -31,7 +29,7 @@ export default {
 <style>
 .editor {}
 
-.editor .node {
+.editor .node-holder {
   border: 1px solid red;
 }
 </style>

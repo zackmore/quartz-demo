@@ -1,24 +1,50 @@
 <template>
 <div class="node">
-<!--
-<new-node />
--->
+  {{ node }}
+
+  <!-- the actual node -->
+  <start-node :node="node" v-if="node.type=='start'" />
+
+  <!-- the next(s) -->
+  <!--
+  <node :node="node" :time="thistime" v-if="time > 1" />
+  -->
+  <div v-if="!noNext">
+    {{ nextNodes }}
+  </div>
+
+
 </div>
 </template>
 
 <script>
-import NewNode from './NewNode.vue'
+import Node from './Node.vue'
+
+import StartNode from './nodes/StartNode.vue'
+import EndNode from './nodes/EndNode.vue'
+import NormalNode from './nodes/NormalNode.vue'
+import QuestionNode from './nodes/QuestionNode.vue'
+import AnswerNode from './nodes/AnswerNode.vue'
 
 export default {
+  name: 'node',
+
+  props: ['node', 'nexts'],
+
+  computed: {
+    noNext () {
+      return _.isEmpty(this.node.next)
+    },
+
+    nextNodes () {
+      if (!_.isEmpty(this.node.next)) {
+        return this.node.next
+      }
+    }
+  },
+
   components: {
-    NewNode
-  }
+    StartNode,
+  },
 }
 </script>
-
-<style>
-.node {
-  border: 1px solid red;
-  padding: 10px;
-}
-</style>
