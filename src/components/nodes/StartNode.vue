@@ -1,6 +1,7 @@
 <template>
 <div class="node start">
   start node {{ node.id }}
+
   <dl>
     <dt>text</dt>
     <dd><input type="text" v-model="node.text"></dd>

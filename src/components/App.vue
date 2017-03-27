@@ -3,6 +3,7 @@
   <div :class="{ 'active': showEditor }">
     <editor :startNodeId="startNodeId" />
   </div>
+
   <!--
   <div :class="{ 'active': showRunner }">
     <runner />
@@ -22,14 +23,15 @@ export default {
     return {
       showEditor: true,
       showRunner: false,
+
       startNodeId: null
     }
   },
 
   created () {
     let start = new BaseNode({ type: 'start', text: 'start', link: 'http://baidu.com' })
-    this.startNodeId = start.id
     Storage.upsert(start.id, start)
+    this.startNodeId = start.id
   },
 
   components: {

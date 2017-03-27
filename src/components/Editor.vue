@@ -16,16 +16,18 @@ export default {
 
   data () {
     return {
-      startNode: {
-        id: null,
-        type: null,
-        next: null
-      }
+      startNode: null
     }
   },
 
   created () {
-    this.startNode = Storage.get(this.startNodeId)
+    this.regetData()
+  },
+
+  methods: {
+    regetData () {
+      this.startNode = Storage.get(this.startNodeId)
+    }
   },
 
   components: {
