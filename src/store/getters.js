@@ -1,0 +1,4 @@
+// Getters
+
+export default {
+}
