@@ -1,18 +1,20 @@
 <template>
 <div class="container">
   <div :class="{ 'active': showEditor }">
-    <editor :dialogs="dialogs" />
+    <editor :startNodeId="startNodeId" />
   </div>
+  <!--
   <div :class="{ 'active': showRunner }">
-    <runner :dialogs="dialogs" />
+    <runner />
   </div>
+  -->
 </div>
 </template>
 
 <script>
+import { save } from '../db'
 import Editor from './Editor.vue'
 import Runner from './Runner.vue'
-
 import BaseNode from '../utils/BaseNode.js'
 
 export default {
@@ -20,21 +22,14 @@ export default {
     return {
       showEditor: true,
       showRunner: false,
-
-      dialogs: []
+      startNodeId: null
     }
-  },
-
-  methods: {
-    /*
-    addNode ({ type, text, link }) {
-    } 
-    */
   },
 
   created () {
     let start = new BaseNode({ type: 'start', text: 'start', link: 'http://baidu.com' })
-    this.dialogs.push(start)
+    this.startNodeId = start.id
+    save(start.id, start)
   },
 
   components: {

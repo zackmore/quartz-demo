@@ -3,7 +3,9 @@
   {{ node }}
 
   <!-- the actual node -->
+  <!--
   <start-node :node="node" v-if="node.type=='start'" />
+  -->
 
   <!-- the next(s) -->
   <!--
@@ -18,6 +20,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import Node from './Node.vue'
 
 import StartNode from './nodes/StartNode.vue'
@@ -33,14 +36,21 @@ export default {
 
   computed: {
     noNext () {
-      return _.isEmpty(this.node.next)
+      if (!_.isNull(this.node)) {
+        return _.isEmpty(this.node.next)
+      }
     },
 
     nextNodes () {
-      if (!_.isEmpty(this.node.next)) {
-        return this.node.next
+      if (!_.isNull(this.node)) {
+        if (!_.isEmpty(this.node.next)) {
+          return this.node.next
+        }
       }
     }
+  },
+
+  created () {
   },
 
   components: {

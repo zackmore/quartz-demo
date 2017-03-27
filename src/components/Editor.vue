@@ -1,23 +1,31 @@
 <template>
 <div class="editor">
   <h1>Editor</h1>
-  {{ dialogs }}
+  {{ startNodeId }}
   <hr>
-  <node :node="startNode" :time="3" />
+  <node :node="startNode" />
 </div>
 </template>
 
 <script>
-import _ from 'lodash'
+import { get } from '../db'
 import Node from './Node.vue'
 
 export default {
-  props: ['dialogs'],
+  props: ['startNodeId'],
 
-  computed: {
-    startNode () {
-      return _.find(this.dialogs, { type: 'start' })
+  data () {
+    return {
+      startNode: {
+        id: null,
+        type: null,
+        next: null
+      }
     }
+  },
+
+  created () {
+    this.startNode = get(this.startNodeId)
   },
 
   components: {
