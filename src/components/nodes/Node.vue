@@ -1,14 +1,11 @@
 <template>
 <div class="node">
-
   <!-- the actual node -->
   <start-node :node="node" v-if="node.type=='start'" />
   <normal-node :node="node" v-if="node.type=='normal'" />
 
   <!-- the next(s) -->
-  {{ nextNodes }}
-
-  <node :node="nextNodes" v-if="!noNext" />
+  <node :nodeId="nextNodes" v-if="!noNext" />
 
   <!--
   <div v-if="!noNext">
@@ -32,9 +29,19 @@ import AnswerNode from './AnswerNode.vue'
 export default {
   name: 'node',
 
-  props: ['node', 'nexts'],
+  props: ['nodeId'],
+
+  data () {
+    return {
+      node: null
+    }
+  },
 
   computed: {
+    nodes () {
+      return this.$store.getters.nodes
+    },
+
     noNext () {
       return _.isEmpty(this.node.next)
     },
@@ -43,6 +50,7 @@ export default {
       return this.node.next
     },
 
+    /*
     nextNodes () {
       if (this.node.type == 'question') {
         return []
@@ -50,13 +58,11 @@ export default {
         return Storage.get(this.node.next)
       }
     }
+    */
   },
 
-  watch: {
-    node: function (val, oldVal) {
-      console.log(val)
-      console.log(oldVal)
-    }
+  created () {
+    this.node = _.find(this.nodes, { id: this.nodeId })
   },
 
   components: {

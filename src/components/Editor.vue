@@ -1,8 +1,9 @@
 <template>
 <div class="editor">
   <h1>Editor</h1>
+  {{ allNodes }}
   <hr>
-  <node :node="startNode" />
+  <node :nodeId="startNodeId" />
 </div>
 </template>
 
@@ -12,8 +13,12 @@ import Node from './nodes/Node.vue'
 
 export default {
   computed: {
-    startNode () {
-      return this.$store.getters.startNode
+    allNodes () {
+      return this.$store.getters.nodes
+    },
+
+    startNodeId () {
+      return this.$store.getters.startNode.id
     }
   },
 

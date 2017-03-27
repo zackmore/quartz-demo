@@ -12,7 +12,7 @@
 
   <br>
 
-  <add-next :follow="node" v-if="noNext"></add-next>
+  <add-next :following="node" v-if="noNext" />
 </div>
 </template>
 

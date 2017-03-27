@@ -1,11 +1,6 @@
 <template>
 <div class="container">
-  {{ nodes }}
-
   <div :class="{ 'active': showEditor }">
-    <!--
-    <editor :startNodeId="startNodeId" />
-    -->
     <editor />
   </div>
 

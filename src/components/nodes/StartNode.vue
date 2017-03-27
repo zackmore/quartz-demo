@@ -1,6 +1,8 @@
 <template>
 <div class="node start">
-  start node {{ node.id }}
+  start node 
+  <br>
+  {{ node }}
 
   <dl>
     <dt>text</dt>
@@ -8,7 +10,7 @@
   </dl>
   <br>
   
-  <add-next :follow="node" v-if="noNext" />
+  <add-next :following="node" v-if="noNext" />
 </div>
 </template>
 
@@ -22,6 +24,16 @@ export default {
   computed: {
     noNext () {
       return _.isEmpty(this.node.next)
+    }
+  },
+
+  created () {
+    console.log(this.node)
+  },
+
+  watch: {
+    'node': function (val, oldVal) {
+      console.log(val)
     }
   },
 

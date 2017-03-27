@@ -1,11 +1,10 @@
 <template>
 <div class="node-next">
 
-{{ follow }}
-
 <fieldset>
+  <!-- type -->
   <div v-if="!show">
-    <div v-if="follow.type != 'question'">
+    <div v-if="following.type != 'question'">
       <button @click="changeShow('normal')">Add Normal</button>
       <button @click="changeShow('question')">Add Question</button>
       <button @click="changeShow('end')">Add End</button>
@@ -15,6 +14,7 @@
     </div>
   </div>
 
+  <!-- forms -->
   <div v-if="show == 'normal'">
     <strong>New Normal Node</strong>
     <br>
@@ -29,6 +29,7 @@
 
   <div v-if="show == 'end'">End</div>
 
+  <!-- button -->
   <div v-if="show">
     <button @click="save">Save</button>
   </div>
@@ -43,7 +44,7 @@ import Storage from '../../db'
 import BaseNode from '../../utils/BaseNode.js'
 
 export default {
-  props: ['follow'],
+  props: ['following'],
 
   data () {
     return {
@@ -66,14 +67,10 @@ export default {
 
     save () {
       let node = new BaseNode(this.node)
-      Storage.upsert(node.id, node)
-      this.follow.next = node.id
-      Storage.upsert(this.follow.id, this.follow)
-
-      /*
-      console.log(JSON.parse(JSON.stringify(this.node)))
-      */
-      console.log(Storage.nodes)
+      // Storage.upsert(node.id, node)
+      // this.follow.next = node.id
+      // Storage.upsert(this.follow.id, this.follow)
+      this.$store.dispatch('CREATE_NODE', { node, followingId: this.following.id })
     }
   }
 }
