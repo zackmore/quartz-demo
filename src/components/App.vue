@@ -1,7 +1,12 @@
 <template>
 <div class="container">
+  {{ nodes }}
+
   <div :class="{ 'active': showEditor }">
+    <!--
     <editor :startNodeId="startNodeId" />
+    -->
+    <editor />
   </div>
 
   <!--
@@ -23,15 +28,12 @@ export default {
     return {
       showEditor: true,
       showRunner: false,
-
-      startNodeId: null
     }
   },
 
   created () {
     let start = new BaseNode({ type: 'start', text: 'start', link: 'http://baidu.com' })
-    Storage.upsert(start.id, start)
-    this.startNodeId = start.id
+    this.$store.dispatch('CREATE_NODE', { node: start })
   },
 
   components: {
