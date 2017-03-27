@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { save } from '../db'
+import Storage from '../db'
 import Editor from './Editor.vue'
 import Runner from './Runner.vue'
 import BaseNode from '../utils/BaseNode.js'
@@ -29,7 +29,7 @@ export default {
   created () {
     let start = new BaseNode({ type: 'start', text: 'start', link: 'http://baidu.com' })
     this.startNodeId = start.id
-    save(start.id, start)
+    Storage.upsert(start.id, start)
   },
 
   components: {

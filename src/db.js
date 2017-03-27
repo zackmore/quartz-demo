@@ -1,9 +1,21 @@
-const db = window.localStorage
+import _ from 'lodash'
 
-export function save (id, data) {
-  db.setItem(id, JSON.stringify(data))
+export default {
+  nodes: [],
+
+  upsert (id, data) {
+    let node = this.get(id)
+    if (node) {
+      let index = _.findIndex(this.nodes, node)
+      let newnode = _.assign(node, data)
+      this.nodes.splice(index, 1, newnode)
+    } else {
+      this.nodes.push(data)
+    }
+  },
+
+  get (id) {
+    return _.find(this.nodes, { id })
+  }
 }
 
-export function get (id) {
-  return JSON.parse(db.getItem(id))
-}

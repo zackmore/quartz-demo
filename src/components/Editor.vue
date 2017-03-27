@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import { get } from '../db'
-import Node from './Node.vue'
+import Storage from '../db'
+import Node from './nodes/Node.vue'
 
 export default {
   props: ['startNodeId'],
@@ -25,7 +25,7 @@ export default {
   },
 
   created () {
-    this.startNode = get(this.startNodeId)
+    this.startNode = Storage.get(this.startNodeId)
   },
 
   components: {
