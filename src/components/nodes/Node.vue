@@ -11,8 +11,6 @@
   <div v-if="!noNext">
     {{ nextNodes }}
   </div>
-
-
 </div>
 </template>
 

@@ -7,7 +7,7 @@
   </dl>
   <br>
   
-  <add-next v-if="noNext" />
+  <add-next :follow="node" v-if="noNext" />
 </div>
 </template>
 
