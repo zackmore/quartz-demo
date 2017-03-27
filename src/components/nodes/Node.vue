@@ -4,6 +4,9 @@
   <start-node :node="node" v-if="node.type=='start'" />
   <normal-node :node="node" v-if="node.type=='normal'" />
 
+  <end-node :node="node" v-if="node.type=='end'" />
+
+
   <!-- the next(s) -->
   <node :nodeId="nextNodes" v-if="!noNext" />
 
@@ -67,7 +70,8 @@ export default {
 
   components: {
     StartNode,
-    NormalNode
+    NormalNode,
+    EndNode
   }
 }
 </script>

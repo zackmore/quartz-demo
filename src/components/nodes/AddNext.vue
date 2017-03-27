@@ -27,7 +27,13 @@
 
   <div v-if="show == 'answer'">Answer(s)</div>
 
-  <div v-if="show == 'end'">End</div>
+  <div v-if="show == 'end'">
+    <strong>End This</strong>
+    <br>
+    <input type="text" v-model="node.text" placeholder="Text">
+    <br>
+    <input type="text" v-model="node.link" placeholder="Link">
+  </div>
 
   <!-- button -->
   <div v-if="show">
@@ -63,6 +69,10 @@ export default {
     changeShow (type) {
       this.show = type
       this.node.type = type
+
+      if (type == 'end') {
+        delete this.node.next
+      }
     },
 
     save () {

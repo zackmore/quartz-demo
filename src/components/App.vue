@@ -9,6 +9,14 @@
     <runner />
   </div>
   -->
+
+  <br>
+  <br>
+  <br>
+
+  <div style="display: block">
+    <button @click="generateJSON">Generate Data</button>
+  </div>
 </div>
 </template>
 
@@ -26,9 +34,21 @@ export default {
     }
   },
 
+  computed: {
+    nodes () {
+      return this.$store.getters.nodes
+    }
+  },
+
   created () {
     let start = new BaseNode({ type: 'start', text: 'start', link: 'http://baidu.com' })
     this.$store.dispatch('CREATE_NODE', { node: start })
+  },
+
+  methods: {
+    generateJSON () {
+      console.log(this.nodes)
+    }
   },
 
   components: {
