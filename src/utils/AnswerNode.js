@@ -1,8 +1,8 @@
 import Node from './BaseNode.js'
 
-export default class StartNode extends Node {
+export default class AnswerNode extends Node {
   constructor ({ text, link }) {
     super({ text, link })
-    this.type = 'start'
+    this.type = 'answer'
   }
 }

@@ -24,7 +24,7 @@
 import Storage from '../db'
 import Editor from './Editor.vue'
 import Runner from './Runner.vue'
-import BaseNode from '../utils/BaseNode.js'
+import StartNode from '../utils/StartNode.js'
 
 export default {
   data () {
@@ -41,7 +41,7 @@ export default {
   },
 
   created () {
-    let start = new BaseNode({ type: 'start', text: 'start', link: 'http://baidu.com' })
+    let start = new StartNode({ text: 'start', link: 'http://baidu.com' })
     this.$store.dispatch('CREATE_NODE', { node: start })
   },
 

@@ -1,4 +1,5 @@
 // Actions
+import _ from 'lodash'
 
 export default {
   CREATE_NODE (context, { node, followingId=null }) {

@@ -23,7 +23,13 @@
     <input type="text" v-model="node.link" placeholder="Link">
   </div>
 
-  <div v-if="show == 'question'">Question</div>
+  <div v-if="show == 'question'">
+    <strong>Question</strong>
+    <br>
+    <input type="text" v-model="node.text" placeholder="Question">
+    <br>
+    <input type="text" v-model="node.link" placeholder="Link">
+  </div>
 
   <div v-if="show == 'answer'">Answer(s)</div>
 
@@ -47,7 +53,12 @@
 
 <script>
 import Storage from '../../db'
-import BaseNode from '../../utils/BaseNode.js'
+// import BaseNode from '../../utils/BaseNode.js'
+import StartNode from '../../utils/StartNode'
+import NormalNode from '../../utils/NormalNode'
+import QuestionNode from '../../utils/QuestionNode'
+import AnswerNode from '../../utils/AnswerNode'
+import EndNode from '../../utils/EndNode'
 
 export default {
   props: ['following'],
@@ -68,18 +79,27 @@ export default {
   methods: {
     changeShow (type) {
       this.show = type
-      this.node.type = type
-
-      if (type == 'end') {
-        delete this.node.next
-      }
     },
 
     save () {
-      let node = new BaseNode(this.node)
-      // Storage.upsert(node.id, node)
-      // this.follow.next = node.id
-      // Storage.upsert(this.follow.id, this.follow)
+      let node = null
+
+      switch (this.show) {
+        case 'normal':
+          node = new NormalNode(this.node)
+          break
+        case 'question':
+          node = new QuestionNode(this.node)
+          break
+        case 'answer':
+          node = new AnswerNode(this.node)
+          break
+        case 'end':
+          node = new EndNode(this.node)
+        default:
+          break
+      }
+
       this.$store.dispatch('CREATE_NODE', { node, followingId: this.following.id })
     }
   }
