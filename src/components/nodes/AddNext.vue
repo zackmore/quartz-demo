@@ -1,6 +1,5 @@
 <template>
 <div class="node-next">
-
 <fieldset>
   <!-- type -->
   <div v-if="!show">
@@ -53,11 +52,9 @@
 
 <script>
 import Storage from '../../db'
-// import BaseNode from '../../utils/BaseNode.js'
 import StartNode from '../../utils/StartNode'
 import NormalNode from '../../utils/NormalNode'
 import QuestionNode from '../../utils/QuestionNode'
-import AnswerNode from '../../utils/AnswerNode'
 import EndNode from '../../utils/EndNode'
 
 export default {
@@ -90,9 +87,6 @@ export default {
           break
         case 'question':
           node = new QuestionNode(this.node)
-          break
-        case 'answer':
-          node = new AnswerNode(this.node)
           break
         case 'end':
           node = new EndNode(this.node)

@@ -3,7 +3,6 @@ import _ from 'lodash'
 
 export default {
   CREATE_NODE (context, { node, followingId=null }) {
-    console.log(node)
     switch (node.type) {
       case 'start':
         context.commit('CREATE_START_NODE', { node })
@@ -17,13 +16,12 @@ export default {
       case 'question':
         context.commit('CREATE_QUESTION_NODE', { node, followingId })
         break
-      case 'answer':
-        break
       default:
         break
     }
+  },
 
-
-    // context.commit('CREATE_NODE', { node, followingId })
+  CREATE_ANSWER_NODES (context, { nodes, followingId }) {
+    context.commit('CREATE_ANSWER_NODES', { nodes, followingId })
   }
 }

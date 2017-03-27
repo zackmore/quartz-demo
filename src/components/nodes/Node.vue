@@ -3,18 +3,19 @@
   <!-- the actual node -->
   <start-node :node="node" v-if="node.type=='start'" />
   <normal-node :node="node" v-if="node.type=='normal'" />
-
+  <question-node :node="node" v-if="node.type=='question'" />
+  <answer-node :node="node" v-if="node.type=='answer'" />
   <end-node :node="node" v-if="node.type=='end'" />
 
 
   <!-- the next(s) -->
-  <node :nodeId="nextNodes" v-if="!noNext" />
 
-  <!--
-  <div v-if="!noNext">
-    {{ nextNodes }}
+  <div class="answers-list" v-if="answersList">
+    <node :nodeId="id" :key="id" v-for="id in nextNodes" v-if="!noNext"></node>
   </div>
-  -->
+  <div v-else>
+    <node :nodeId="nextNodes" v-if="!noNext" />
+  </div>
 </div>
 </template>
 
@@ -53,6 +54,10 @@ export default {
       return this.node.next
     },
 
+    answersList () {
+      return _.isArray(this.node.next)
+    }
+
     /*
     nextNodes () {
       if (this.node.type == 'question') {
@@ -71,6 +76,8 @@ export default {
   components: {
     StartNode,
     NormalNode,
+    QuestionNode,
+    AnswerNode,
     EndNode
   }
 }
