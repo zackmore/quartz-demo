@@ -1,6 +1,6 @@
 # quartz-demo
 
-> A Vue.js project
+> An Editor & Runner Demo like the App [Quartz](https://qz.com/).
 
 ## Build Setup
 
