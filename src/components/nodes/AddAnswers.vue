@@ -8,8 +8,8 @@
   </div>
 
   <!-- forms -->
-  <div v-if="show" class="new-answer-holder">
-    <div class="new-answer" v-for="a in answers">
+  <div v-if="show" class="new-answer-holder grid">
+    <div class="new-answer col" v-for="a in answers">
       <strong>New Answer Node</strong>
       <br>
       <input type="text" v-model="a.text" placeholder="Text">
@@ -76,7 +76,6 @@ export default {
   border: 1px solid red;
   padding: 10px;
   margin: 10px;
-  float: left;
 }
 
 .new-answer-save {

@@ -10,8 +10,8 @@
 
   <!-- the next(s) -->
 
-  <div class="answers-list" v-if="answersList">
-    <node :nodeId="id" :key="id" v-for="id in nextNodes" v-if="!noNext"></node>
+  <div class="answers-list grid" v-if="answersList">
+    <node class="col" :nodeId="id" :key="id" v-for="id in nextNodes" v-if="!noNext"></node>
   </div>
   <div v-else>
     <node :nodeId="nextNodes" v-if="!noNext" />
