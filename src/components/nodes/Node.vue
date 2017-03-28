@@ -21,8 +21,6 @@
 
 <script>
 import _ from 'lodash'
-import Storage from '../../db'
-
 import Node from './Node.vue'
 import StartNode from './StartNode.vue'
 import EndNode from './EndNode.vue'
@@ -57,16 +55,6 @@ export default {
     answersList () {
       return _.isArray(this.node.next)
     }
-
-    /*
-    nextNodes () {
-      if (this.node.type == 'question') {
-        return []
-      } else {
-        return Storage.get(this.node.next)
-      }
-    }
-    */
   },
 
   created () {

@@ -27,16 +27,6 @@ export default {
     }
   },
 
-  created () {
-    console.log(this.node)
-  },
-
-  watch: {
-    'node': function (val, oldVal) {
-      console.log(val)
-    }
-  },
-
   components: {
     AddNext
   },

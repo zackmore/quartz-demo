@@ -1,15 +1,18 @@
 <template>
 <div class="container">
+  <button @click="run" v-if="showEditor">Run</button>
+
   <div :class="{ 'active': showEditor }">
     <editor />
   </div>
 
-  <!--
   <div :class="{ 'active': showRunner }">
     <runner />
   </div>
-  -->
 
+  <br>
+  <br>
+  <br>
   <br>
   <br>
   <br>
@@ -48,6 +51,11 @@ export default {
   methods: {
     generateJSON () {
       console.log(this.nodes)
+    },
+
+    run () {
+      this.showEditor = false
+      this.showRunner = true
     }
   },
 
